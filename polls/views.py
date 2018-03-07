@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 
 # For the oopsies
 from django.http import Http404
+from django.db.models import Q
 
 # For detail, results & votes templates
 from django.http import HttpResponse, HttpResponseRedirect
@@ -33,8 +34,7 @@ def search(request):
         if search is None or search == "":
             return redirect("index")
     # CONTINUE
-    article_results = Article.objects.filter(name__icontains=search)
-    # ask sam ^^^^^
+    article_results = Article.objects.filter(Q(name__icontains=search)|Q(description__icontains=search))
     comment_results = Comment.objects.filter(comment__icontains=search)
     context = {'article_results': article_results, 'comment_results': comment_results, 'search': search}
     return render(request, 'polls/search.html', context)

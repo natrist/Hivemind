@@ -11,41 +11,41 @@
 
     <body>
         <h1>{{ article.name }}</h1>
-        <div id="article-box">
-            <div id="profile-box">
+        <div class="article-box">
+            <div class="profile-box">
                 <h5>{{ article.author }}</h5>
-                <div id="avatar-box-op">
-                    <img id="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
+                <div class="avatar-box-op">
+                    <img class="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
                 </div>
                 <h6>Posted on {{ article.date_created }}
                     <br>Modified on {{ article.date_modified }}</h6>
             </div>
-            <div id="article-description">
+            <div class="article-description">
                 <p>{{ article.description|safe }}</p>
             </div>
         </div>
         {% for comment in article.comment_set.all %}
-        <div id="comment-box">
-                <div id="profile-box">
+        <div class="comment-box" id="comment-{{ comment.id }}">
+                <div class="profile-box">
                     <h5>{{ comment.author }}</h5>
                     {% if comment.author == article.author %}
-                        <div id="avatar-box-op">
+                        <div class="avatar-box-op">
                     {% else %}
-                        <div id="avatar-box">
+                        <div class="avatar-box">
                     {% endif %}
-                    <img id="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
+                    <img class="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
                     </div> 
                     <h6>Posted on {{ article.date_created }}
                         <br>Modified on {{ article.date_modified }}</h6>
                 </div>
-                <div id="article-description">
+                <div class="article-description">
                     <p>{{ comment.comment|safe }}</p>
                 </div>
             </div>
         {% endfor %}
 
-        <div id="virtual-footer">
-            <a id="virtual-footer-button" href="http://localhost:8000/">< GO BACK HOME</a>
+        <div class="virtual-footer">
+            <a class="virtual-footer-button" href="http://localhost:8000/">< GO BACK HOME</a>
         </div>
     </body>
 </html>

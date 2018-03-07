@@ -16,6 +16,35 @@
     background-color: goldenrod;
 }
 
+.result-link {
+    display: block;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: transparent;
+    text-decoration: none; /* no underline */
+    color: black;
+
+    /* Prevent selection */
+    -moz-user-select: none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   /*
+     Introduced in IE 10.
+     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+   */
+   -ms-user-select: none;
+   user-select: none;
+   -webkit-tap-highlight-color: transparent;
+}
+
+.result-link:visited {
+    color: inherit;
+}
+
+.result-link:hover {
+    background-color: rgba(158, 158, 158, 0.336);
+}
+
 /*
  *  Below code is the same as in detail.css
  *  We copy it instead of referencing it,
@@ -49,8 +78,6 @@ h1 {
 }
 
 #article-box {
-    margin-left: 10%;
-    margin-right: 10%;
     overflow: hidden;
     border-top: solid 1px gray;
     border-bottom: solid 1px gray;
@@ -58,8 +85,6 @@ h1 {
 
 /* Same as article box, but does not display top border */
 #comment-box {
-    margin-left: 10%;
-    margin-right: 10%;
     overflow: hidden;
     border-bottom: solid 1px gray;
 }

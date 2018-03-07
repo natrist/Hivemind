@@ -14,7 +14,7 @@
         <!-- Article results listing: -->
         {% if comment_results or article_results %}
             {% for article in article_results %}
-                <a href="">
+                <a href="{% url 'detail' article.id %}" class="result-link">
                     <div id="article-box">
                         <div id="profile-box">
                             <h5>{{ article.author }}</h5>
@@ -32,7 +32,7 @@
             {% endfor %}
             <!-- Comment results listing: -->
             {% for comment in comment_results %}
-                <a href="">
+                <a href="{% url 'detail' comment.article.id %}#comment-{{ comment.id }}" class="result-link">
                     <div id="article-box">
                         <div id="profile-box">
                             <h5>{{ comment.author }}</h5>
