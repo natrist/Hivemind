@@ -51,7 +51,7 @@ body:after {
     text-align: center;
 
     /* Shadow */
-    box-shadow: 2px 2px black;
+    box-shadow: 1px 1px black;
 
     font-family: 'Fira Mono', monospace;
 
