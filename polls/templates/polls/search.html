@@ -5,24 +5,45 @@
 
 <html>
     <head>
-        <title>Hivemind –– {{ article.name}}</title>
+        <title>Hivemind –– Search</title>
         <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/search.css' %}">
     </head>
 
     <body>
+        <header class="Search-header">
+            <h1 class="Search-heading">
+                Search results for "{{ search }}"
+            </h1>
+            <div class="Container">
+                <div class="Search-controls">
+                    <form action class="Form" id="search-form">
+
+                    </form>
+                </div>
+            </div>
+            <div class="Search-summary">
+                x-y of {{ total_results }} posts
+            </div>
+        </header>
+        <div class="Search-Result"></div>
         <!-- Article results listing: -->
         {% if comment_results or article_results %}
             {% for article in article_results %}
                 <a href="{% url 'detail' article.id %}" class="result-link">
-                    <div id="article-box">
-                        <div id="profile-box">
-                            <h5>{{ article.author }}</h5>
+                    <div class="Post-content">
+                        <div class="Author">
                             <div id="avatar-box">
-                                <img id="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
+                                    <img id="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
+                            </div>
+                            <div class="Author-detail">
+                                {{ article.author }}
                             </div> 
                             <h6>Posted on {{ article.date_created }}
                             <br>Modified on {{ article.date_modified }}</h6>
+                        </div>
+                        <div class="Post-title">
+                            {{ article.name }}
                         </div>
                         <div id="article-description">
                             <p>{{ article.description|highlighter:search|safe }}</p>
@@ -32,15 +53,20 @@
             {% endfor %}
             <!-- Comment results listing: -->
             {% for comment in comment_results %}
-                <a href="{% url 'detail' comment.article.id %}#comment-{{ comment.id }}" class="result-link">
-                    <div id="article-box">
-                        <div id="profile-box">
-                            <h5>{{ comment.author }}</h5>
+            <a href="{% url 'detail' comment.article.id %}#post-{{ comment.id }}" class="result-link">
+                    <div class="Post-content">
+                        <div class="Author">
                             <div id="avatar-box">
-                                <img id="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
+                                    <img id="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
+                            </div>
+                            <div class="Author-detail">
+                                {{ comment.author }}
                             </div> 
                             <h6>Posted on {{ comment.date_created }}
                             <br>Modified on {{ comment.date_modified }}</h6>
+                        </div>
+                        <div class="Post-title">
+                            {{ comment.article.name }}
                         </div>
                         <div id="article-description">
                             <p>{{ comment.comment|highlighter:search|safe }}</p>

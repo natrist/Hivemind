@@ -9,6 +9,17 @@
  *  and I'm too lazy to scroll
  */
 
+ .Search-header {
+     display: block;
+     margin-right: 10%;
+     margin-left: 10%;
+ }
+
+ .Search-summary {
+     display:block;
+     margin-bottom: 10px;
+ }
+
 /* For the search results highlighting */
 .highlight {
     font-weight: bold;
@@ -72,12 +83,7 @@ body:after {
     background: #dceeff;
 }
 
-h1 {
-    overflow: hidden;
-    margin-left: 10%;
-}
-
-#article-box {
+.Post-content {
     overflow: hidden;
     border-top: solid 1px gray;
     border-bottom: solid 1px gray;
@@ -89,14 +95,22 @@ h1 {
     border-bottom: solid 1px gray;
 }
 
-#profile-box {
-    text-align: center;
+.Author {
+    /*text-align: center;*/
     float: left;
-    margin-right: 40px;
+    /*margin-right: 40px;*/
+    padding-right: 50px;
+    padding-top: 15px;
+}
+
+.Author-detail {
+    float: left;
+    overflow: hidden;
+    /*loat: right;*/
 }
 
 #avatar-box {
-    margin-left: 40px;
+    /*margin-left: 40px;*/
     height: 120px;
     width: 120px;
     border: solid black 1px;
@@ -104,7 +118,7 @@ h1 {
 }
 
 #avatar-box-op {
-    margin-left: 40px;
+    /*margin-left: 40px;*/
     height: 120px;
     width: 120px;
     border: solid #42e5f4 2px;
@@ -114,6 +128,14 @@ h1 {
 #profile-picture {
     width: 120px;
     height: 120px;
+}
+
+.Post-title {
+    font-family: 'Fira Mono', monospace;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 20px;
+    padding-top: 15px;
 }
 
 #article-description {
