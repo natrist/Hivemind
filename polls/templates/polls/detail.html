@@ -25,7 +25,7 @@
             </div>
         </div>
         {% for comment in article.comment_set.all %}
-        <div class="comment-box" id="comment-{{ comment.id }}">
+        <div class="comment-box" id="post-{{ comment.id }}">
                 <div class="profile-box">
                     <h5>{{ comment.author }}</h5>
                     {% if comment.author == article.author %}
