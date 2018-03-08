@@ -38,5 +38,7 @@ def search(request):
     # CONTINUE
     article_results = Article.objects.filter(Q(name__icontains=search)|Q(description__icontains=search))
     comment_results = Comment.objects.filter(comment__icontains=search)
-    context = {'article_results': article_results, 'comment_results': comment_results, 'search': search}
+    #total_results = article_results + comment_results
+    total_results = article_results.count() + comment_results.count()
+    context = {'article_results': article_results, 'comment_results': comment_results, 'search': search, 'total_results': total_results}
     return render(request, 'polls/search.html', context)
