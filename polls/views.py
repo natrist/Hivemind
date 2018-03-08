@@ -25,6 +25,8 @@ def detail(request, article_id):
         comment = Comment.objects.get(pk=article_id)
     except Article.DoesNotExist:
         raise Http404("Article does not exist")
+    except Comment.DoesNotExist:
+        comment = None
     return render(request, 'polls/detail.html', {'article': article, 'userprofile':userprofile, 'comment': comment})
 
 def search(request):
