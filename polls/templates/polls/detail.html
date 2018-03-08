@@ -10,33 +10,40 @@
     </head>
 
     <body>
-        <h1>{{ article.name }}</h1>
-        <div class="article-box">
-            <div class="profile-box">
-                <h5>{{ article.author }}</h5>
-                <div class="avatar-box-op">
-                    <img class="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
+        <div class="Article-header">
+            <h1>{{ article.name }}</h1>
+        </div>
+        <div class="Post-content">
+            <div class="Author">
+                <div class="avatar-box">
+                        <img class="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
                 </div>
-                <h6>Posted on {{ article.date_created }}
-                    <br>Modified on {{ article.date_modified }}</h6>
+                <div class="Author-detail">
+                    {{ article.author }} 
+                    <h6>Posted on {{ article.date_created }}
+                    {% if article.is_modified %}
+                        <br>Modified on {{ article.date_modified }}</h6>
+                    {% endif %}
+                </div>
             </div>
             <div class="article-description">
                 <p>{{ article.description|safe }}</p>
             </div>
         </div>
-        {% for comment in article.comment_set.all %}
-        <div class="comment-box" id="post-{{ comment.id }}">
-                <div class="profile-box">
-                    <h5>{{ comment.author }}</h5>
-                    {% if comment.author == article.author %}
-                        <div class="avatar-box-op">
-                    {% else %}
-                        <div class="avatar-box">
-                    {% endif %}
-                    <img class="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
-                    </div> 
-                    <h6>Posted on {{ article.date_created }}
-                        <br>Modified on {{ article.date_modified }}</h6>
+        <!-- Comment results listing: -->
+        {% for comment in article.comment_set.all %} 
+            <div class="Post-content" id="post-{{ comment.id }}">
+                <div class="Author">
+                    <div class="avatar-box">
+                            <img class="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
+                    </div>
+                    <div class="Author-detail">
+                        {{ comment.author }} 
+                        <h6>Posted on {{ comment.date_created }}
+                        {% if article.is_modified %}
+                            <br>Modified on {{ comment.date_modified }}</h6>
+                        {% endif %}
+                    </div>
                 </div>
                 <div class="article-description">
                     <p>{{ comment.comment|safe }}</p>

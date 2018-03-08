@@ -19,52 +19,75 @@ body:after {
     background: #dceeff;
 }
 
-h1 {
-    overflow: hidden;
-    margin-left: 10%;
+.Article-header {
+    display: block;
+    margin-right: 15%;
+    margin-left: 15%;
 }
 
-.article-box {
-    margin-left: 10%;
-    margin-right: 10%;
+.Post-content {
+    margin-left: 15%;
+    margin-right: 15%;
     overflow: hidden;
+    border-top: solid 1px gray;
+}
+
+.Post-content:last-of-type {
     border-top: solid 1px gray;
     border-bottom: solid 1px gray;
 }
 
 /* Same as article box, but does not display top border */
 .comment-box {
-    margin-left: 10%;
-    margin-right: 10%;
     overflow: hidden;
-    border-bottom: solid 1px gray;
+    border-top: solid 1px gray;
 }
 
-.profile-box {
-    text-align: center;
+.Author {
+    /*text-align: center;*/
     float: left;
-    margin-right: 40px;
+    /*margin-right: 40px;*/
+    padding-right: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .avatar-box {
-    margin-left: 40px;
-    height: 120px;
-    width: 120px;
+    /*margin-left: 40px;*/
+    float: left;
+    height: 60px;
+    width: 60px;
     border: solid black 1px;
     text-align: center;
 }
 
+.Author-detail {
+    float: right;
+    padding-left: 15px;
+    /*float: right;*/
+    /*loat: right;*/
+}
+
 .avatar-box-op {
-    margin-left: 40px;
-    height: 120px;
-    width: 120px;
+    /*margin-left: 40px;*/
+    float: left;
+    height: 60px;
+    width: 60px;
     border: solid #42e5f4 2px;
     text-align: center;
 }
 
 .profile-picture {
-    width: 120px;
-    height: 120px;
+    width: 60px;
+    height: 60px;
+}
+
+.Post-title {
+    font-family: 'Fira Mono', monospace;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 20px;
+    padding-top: 15px;
 }
 
 .article-description {
@@ -72,6 +95,7 @@ h1 {
     width: 60%;
     position: relative;
     padding-left: 5px;
+    padding-bottom: 15px;
 }
 
 .comments-box {
