@@ -38,7 +38,9 @@
                         <div class="Author-detail">
                             {{ article.author }} 
                             <h6>Posted on {{ article.date_created }}
-                            <br>Modified on {{ article.date_modified }}</h6>
+                            {% if article.is_modified %}
+                                <br>Modified on {{ article.date_modified }}</h6>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="Post-title">
@@ -59,7 +61,9 @@
                         <div class="Author-detail">
                             {{ comment.author }} 
                             <h6>Posted on {{ comment.date_created }}
-                            <br>Modified on {{ comment.date_modified }}</h6>
+                            {% if article.is_modified %}
+                                <br>Modified on {{ comment.date_modified }}</h6>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="Post-title">
