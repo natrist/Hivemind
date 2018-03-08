@@ -10,6 +10,13 @@ class SuperDatedAdmin(admin.ModelAdmin):
         'date_modified'
     ]
 
+class CommentAdmin(SuperDatedAdmin):
+    list_display = ['id', 'comment', 'date_created']
+    ordering = ['id', 'comment']
+    list_display_links = list_display
+    # fields = []
+    # fieldsets = []
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['id', 'name']
     ordering = ['id']
@@ -24,5 +31,5 @@ class ArticleAdmin(SuperDatedAdmin):
 
 admin.site.register(UserProfile)
 admin.site.register(Article, ArticleAdmin)
-admin.site.register(Comment)
+admin.site.register(Comment, CommentAdmin)
 admin.site.register(Category, CategoryAdmin)
