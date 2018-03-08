@@ -5,7 +5,26 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
+from django.utils.timezone import now
 
+
+class SuperDatedModel(models.Model):
+    date_created = models.DateTimeField('date published')
+    date_modified = models.DateTimeField('last modified')
+
+    @property
+    def is_modified(self):
+        return not self.date_modified == self.date_created
+
+    def save(self, *args, **kwargs):
+        ''' On save, update timestamps '''
+        if not self.id:
+            self.date_created = timezone.now()
+        self.date_modified = timezone.now()
+        return super(SuperDatedModel, self).save(*args, **kwargs)
+
+    class Meta:
+        abstract = True
 
 # UserProfile table model
 class UserProfile(models.Model):
@@ -21,7 +40,6 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.userprofile.save()
 
-
 # Category table model
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -29,18 +47,21 @@ class Category(models.Model):
         verbose_name_plural="Categories"
 
 # Article table model
-class Article(models.Model):
+class Article(SuperDatedModel):
     name = models.CharField(max_length=255)
     description = models.TextField(max_length=3072)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    date_created = models.DateTimeField('date published')
-    date_modified = models.DateTimeField('last modified')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Article'
+        # verbose_name_plural = 'Articlos'
+
 # Comment table model
-class Comment(models.Model):
+class Comment(SuperDatedModel):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     comment = models.CharField(max_length=1024)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    date_created = models.DateTimeField('date published')
-    date_modified = models.DateTimeField('last modified')
