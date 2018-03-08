@@ -1,16 +1,11 @@
-from django.shortcuts import render, get_object_or_404
-
-# For the oopsies
-from django.http import Http404
+# For filtering
 from django.db.models import Q
-
-# For detail, results & votes templates
-from django.http import HttpResponse, HttpResponseRedirect
-
-from django.shortcuts import redirect
-from .models import Article, Category, Comment, UserProfile
-
+# For the oopsies
+from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+
+from .models import Article, Category, Comment, UserProfile
 
 
 def index(request):

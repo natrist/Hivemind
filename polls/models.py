@@ -1,10 +1,11 @@
 import datetime
 
-from django.db import models
-from django.utils import timezone
 from django.contrib.auth.models import User
+from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils import timezone
+
 
 # UserProfile table model
 class UserProfile(models.Model):
@@ -43,4 +44,3 @@ class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     date_created = models.DateTimeField('date published')
     date_modified = models.DateTimeField('last modified')
-    
