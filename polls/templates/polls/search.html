@@ -30,47 +30,43 @@
         <!-- Article results listing: -->
         {% if comment_results or article_results %}
             {% for article in article_results %}
-                <a href="{% url 'detail' article.id %}" class="result-link">
-                    <div class="Post-content">
-                        <div class="Author">
-                            <div id="avatar-box">
-                                    <img id="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
-                            </div>
-                            <div class="Author-detail">
-                                {{ article.author }}
-                            </div> 
+                <a href="{% url 'detail' article.id %}" class="result-link Post-content">
+                    <div class="Author">
+                        <div class="avatar-box">
+                                <img class="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
+                        </div>
+                        <div class="Author-detail">
+                            {{ article.author }} 
                             <h6>Posted on {{ article.date_created }}
                             <br>Modified on {{ article.date_modified }}</h6>
                         </div>
-                        <div class="Post-title">
-                            {{ article.name }}
-                        </div>
-                        <div id="article-description">
-                            <p>{{ article.description|highlighter:search|safe }}</p>
-                        </div>
+                    </div>
+                    <div class="Post-title">
+                        {{ article.name }}
+                    </div>
+                    <div id="article-description">
+                        <p>{{ article.description|highlighter:search|safe }}</p>
                     </div>
                 </a>
             {% endfor %}
             <!-- Comment results listing: -->
             {% for comment in comment_results %}
-            <a href="{% url 'detail' comment.article.id %}#post-{{ comment.id }}" class="result-link">
-                    <div class="Post-content">
-                        <div class="Author">
-                            <div id="avatar-box">
-                                    <img id="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
-                            </div>
-                            <div class="Author-detail">
-                                {{ comment.author }}
-                            </div> 
+                <a href="{% url 'detail' comment.article.id %}#post-{{ comment.id }}" class="result-link Post-content">
+                    <div class="Author">
+                        <div class="avatar-box">
+                                <img class="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
+                        </div>
+                        <div class="Author-detail">
+                            {{ comment.author }} 
                             <h6>Posted on {{ comment.date_created }}
                             <br>Modified on {{ comment.date_modified }}</h6>
                         </div>
-                        <div class="Post-title">
-                            {{ comment.article.name }}
-                        </div>
-                        <div id="article-description">
-                            <p>{{ comment.comment|highlighter:search|safe }}</p>
-                        </div>
+                    </div>
+                    <div class="Post-title">
+                        {{ comment.article.name }}
+                    </div>
+                    <div id="article-description">
+                        <p>{{ comment.comment|highlighter:search|safe }}</p>
                     </div>
                 </a>
             {% endfor %}

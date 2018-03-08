@@ -11,8 +11,8 @@
 
  .Search-header {
      display: block;
-     margin-right: 10%;
-     margin-left: 10%;
+     margin-right: 15%;
+     margin-left: 15%;
  }
 
  .Search-summary {
@@ -29,8 +29,8 @@
 
 .result-link {
     display: block;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 15%;
+    margin-right: 15%;
     background-color: transparent;
     text-decoration: none; /* no underline */
     color: black;
@@ -86,13 +86,17 @@ body:after {
 .Post-content {
     overflow: hidden;
     border-top: solid 1px gray;
+}
+
+.Post-content:last-of-type {
+    border-top: solid 1px gray;
     border-bottom: solid 1px gray;
 }
 
 /* Same as article box, but does not display top border */
 #comment-box {
     overflow: hidden;
-    border-bottom: solid 1px gray;
+    border-top: solid 1px gray;
 }
 
 .Author {
@@ -101,33 +105,36 @@ body:after {
     /*margin-right: 40px;*/
     padding-right: 50px;
     padding-top: 15px;
+    padding-bottom: 15px;
 }
 
-.Author-detail {
-    float: left;
-    overflow: hidden;
-    /*loat: right;*/
-}
-
-#avatar-box {
+.avatar-box {
     /*margin-left: 40px;*/
-    height: 120px;
-    width: 120px;
+    float: left;
+    height: 60px;
+    width: 60px;
     border: solid black 1px;
     text-align: center;
 }
 
+.Author-detail {
+    float: right;
+    padding-left: 15px;
+    /*float: right;*/
+    /*loat: right;*/
+}
+
 #avatar-box-op {
     /*margin-left: 40px;*/
-    height: 120px;
-    width: 120px;
+    height: 60px;
+    width: 60px;
     border: solid #42e5f4 2px;
     text-align: center;
 }
 
-#profile-picture {
-    width: 120px;
-    height: 120px;
+.profile-picture {
+    width: 60px;
+    height: 60px;
 }
 
 .Post-title {
@@ -143,6 +150,7 @@ body:after {
     width: 60%;
     position: relative;
     padding-left: 5px;
+    padding-bottom: 15px;
 }
 
 #comments-box {
