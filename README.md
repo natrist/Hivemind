@@ -1,5 +1,5 @@
 # Installation
-django-kb requires [Django 2.0](https://www.djangoproject.com/)
+Hivemind requires [Django 2.0](https://www.djangoproject.com/)
 
 
 Run the following commands in a terminal window to setup and run django-kb:
