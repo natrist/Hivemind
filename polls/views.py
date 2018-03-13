@@ -37,3 +37,7 @@ def search(request):
     total_results = article_results.count() + comment_results.count()
     context = {'article_results': article_results, 'comment_results': comment_results, 'search': search, 'total_results': total_results}
     return render(request, 'polls/search.html', context)
+
+def login (request):
+    context = {}
+    return render(request, 'polls/login.html', context)
