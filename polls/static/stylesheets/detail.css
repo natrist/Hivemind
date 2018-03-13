@@ -19,6 +19,64 @@ body:after {
     background: #dceeff;
 }
 
+.NavWrapper {
+    /* overflow: hidden; */
+    /* width: 100%; */
+    /* border: 1px solid black; */
+    display: block;
+    width: 250px;
+    float:right;
+    height: 30px;
+    position: relative;
+}
+
+.Profile-Dropdown-button {
+    /* Removing the OS default input box appearance to use our own */
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+    /* General styling */
+    /* border: 1px solid green; */
+    border:none;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 20px;
+    background-color: #394b83;
+    color: #dbdfe2;
+
+    /* Positioning */
+    /* float: right; */
+    /* margin: 4px 2px; */
+    padding:0;
+    width: 100%;
+    height: 100%;
+}
+
+.Profile-Dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #394b83;
+    color: #dbdfe2;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    min-width: 200px;
+}
+
+.Profile-Dropdown-content a {
+    /* Removing the OS default input box appearance to use our own */
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    text-decoration: none;
+    color: inherit;
+}
+
+.NavWrapper:hover .Profile-Dropdown-content {
+    display: block;
+    background-color: #394b83;
+}
+
 .Article-header {
     display: block;
     margin-right: 15%;
