@@ -9,6 +9,7 @@ from django.utils.timezone import now
 
 
 class SuperDatedModel(models.Model):
+    objects = models.Manager()
     date_created = models.DateTimeField('date published')
     date_modified = models.DateTimeField('last modified')
 
@@ -18,7 +19,7 @@ class SuperDatedModel(models.Model):
 
     def save(self, *args, **kwargs):
         ''' On save, update timestamps '''
-        if not self.id:
+        if not self.date_created:
             self.date_created = timezone.now()
         self.date_modified = timezone.now()
         return super(SuperDatedModel, self).save(*args, **kwargs)
@@ -28,11 +29,12 @@ class SuperDatedModel(models.Model):
 
 # UserProfile table model
 class UserProfile(models.Model):
+    objects = models.Manager()
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField()
 
     def __str__(self):
-        return self.user.username
+        return self.user.name
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -46,6 +48,7 @@ def save_user_profile(sender, instance, **kwargs):
 # Category table model
 class Category(models.Model):
     name = models.CharField(max_length=255)
+    objects = models.Manager()
 
     def __str__(self):
         return self.name
@@ -55,6 +58,7 @@ class Category(models.Model):
 
 # Article table model
 class Article(SuperDatedModel):
+    objects = models.Manager()
     name = models.CharField(max_length=255)
     description = models.TextField(max_length=3072)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -69,6 +73,7 @@ class Article(SuperDatedModel):
 
 # Comment table model
 class Comment(SuperDatedModel):
+    objects = models.Manager()
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     comment = models.CharField(max_length=1024)
     author = models.ForeignKey(User, on_delete=models.CASCADE)

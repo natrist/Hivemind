@@ -4,6 +4,8 @@ from django.db.models import Q
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from django.contrib.auth import authenticate
+from django.core.exceptions import ObjectDoesNotExist
 
 from .models import Article, Category, Comment, UserProfile
 
@@ -11,7 +13,6 @@ from .models import Article, Category, Comment, UserProfile
 def index(request):
     hot_articles = Article.objects.order_by('-date_created')[:5]
     context = {'hot_articles': hot_articles}
-    print(request.user.is_authenticated)
     return render(request, 'polls/index.html', context)
 
 def detail(request, article_id):
@@ -20,9 +21,9 @@ def detail(request, article_id):
         userprofile = UserProfile.objects.get(pk=article.author.id)
         comment = Comment.objects.get(pk=article_id)
         newComment = Comment()
-    except Article.DoesNotExist:
+    except ObjectDoesNotExist(article):
         raise Http404("Article does not exist")
-    except Comment.DoesNotExist:
+    except ObjectDoesNotExist(comment):
         comment = None
     return render(request, 'polls/detail.html', {'article': article, 'userprofile':userprofile, 'comment': comment, 'newComment': newComment})
 
@@ -43,7 +44,4 @@ def search(request):
 def login (request):
     username = request.POST['username']
     password = request.POST['password']
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(user)
-        return redirect(index)
+    authenticate(request, username=username, password=password)
