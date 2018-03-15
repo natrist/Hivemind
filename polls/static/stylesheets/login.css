@@ -1,0 +1,16 @@
+form {
+    display: block;
+    padding-top: 20%;
+    margin: 0 auto;
+    text-align: center;
+    width: 300px;
+}
+
+.Login-button, #id_username, #id_password {
+    width: 255px;
+    height: 45px;
+    margin-bottom: 10px;
+
+    font-size: 28px;
+    text-align: center;
+}

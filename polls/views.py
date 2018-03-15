@@ -11,6 +11,7 @@ from .models import Article, Category, Comment, UserProfile
 def index(request):
     hot_articles = Article.objects.order_by('-date_created')[:5]
     context = {'hot_articles': hot_articles}
+    print(request.user.is_authenticated)
     return render(request, 'polls/index.html', context)
 
 def detail(request, article_id):
@@ -39,5 +40,9 @@ def search(request):
     return render(request, 'polls/search.html', context)
 
 def login (request):
-    context = {}
-    return render(request, 'polls/login.html', context)
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(user)
+        return redirect(index)

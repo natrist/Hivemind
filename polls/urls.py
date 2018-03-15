@@ -7,5 +7,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('post/<int:article_id>/', views.detail, name='detail'),
     path("search/", views.search, name="search"),
-    path("login/", auth_views.login, name="login")
+    path("login/", auth_views.login, name="login"),
+    path("logout/", auth_views.logout, {'next_page': '/'})
 ]
