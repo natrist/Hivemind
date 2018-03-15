@@ -162,10 +162,12 @@ body:after {
 
 /* Almost footer, but not quite */
 .virtual-footer {
+    margin-right: 15%;
+    margin-left: 15%;
     padding-top: 60px;
     text-align: center;
     height: 100px;
-    width: 100%;
+    /*width: 100%;*/
 }
 
 .virtual-footer-button {
@@ -187,4 +189,7 @@ body:after {
 .virtual-footer-button:hover {
     background-color: rgb(65, 157, 218);
     border: solid 1px rgb(8, 71, 122);
+}
+
+.Post-submit-button {
 }

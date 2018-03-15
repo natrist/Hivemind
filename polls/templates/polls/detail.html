@@ -7,6 +7,12 @@
         <title>Hivemind –– {{ article.name}}</title>
         <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/detail.css' %}">
+
+        <!-- Include Quill stylesheet -->
+        <link href="{% static 'quill/quill.snow.css' %}" rel="stylesheet">
+
+        <!-- Include the Quill library -->
+        <script src="{% static 'quill/quill.js' %}"></script>
     </head>
 
     <body>
@@ -64,6 +70,51 @@
         {% endfor %}
 
         <div class="virtual-footer">
+
+            <!-- Create the toolbar container -->
+            <div id="toolbar">
+                <button class="ql-bold">Bold</button>
+                <button class="ql-italic">Italic</button>
+                <button class="ql-link">URl</button>
+                <button class="ql-image">Image</button>
+            </div>
+            
+            <!-- Create the editor container -->
+            <div id="editor">
+                <p>Hello World!</p>
+            </div>
+
+            <form>
+                <input name="postContent" type="hidden" value="">
+                <input class ="Post-submit-button" type="submit" value="Submit post">
+            </form>
+
+            <!-- Initialize Quill editor -->
+            <script>
+                var editor = new Quill
+                (
+                    '#editor',
+                    {
+                        modules:{ toolbar: '#toolbar'},
+                        theme: 'snow'
+                    }
+                );
+                
+                var form = document.querySelector('form');
+                form.onsubmit = function()
+                {
+                    // Populate hidden form on submit
+                    var about = document.querySelector('input[name=postContent]');
+                    about.value = JSON.stringify(editor.getContents());
+
+                    // Do something with the data
+                    // ...
+                    // article, comment, author
+                    // newComment
+                    return true;
+                };
+            </script>
+
             <a class="virtual-footer-button" href="http://localhost:8000/">< GO BACK HOME</a>
         </div>
     </body>

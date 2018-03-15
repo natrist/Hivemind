@@ -19,11 +19,12 @@ def detail(request, article_id):
         article = Article.objects.get(pk=article_id)
         userprofile = UserProfile.objects.get(pk=article.author.id)
         comment = Comment.objects.get(pk=article_id)
+        newComment = Comment()
     except Article.DoesNotExist:
         raise Http404("Article does not exist")
     except Comment.DoesNotExist:
         comment = None
-    return render(request, 'polls/detail.html', {'article': article, 'userprofile':userprofile, 'comment': comment})
+    return render(request, 'polls/detail.html', {'article': article, 'userprofile':userprofile, 'comment': comment, 'newComment': newComment})
 
 def search(request):
     # GET request handling
