@@ -123,6 +123,8 @@
 body {
     background-image: url("../images/b48.png");
     background-repeat: y;
+    margin: 0;
+    padding: 0;
 }
 
 /* For background blending */

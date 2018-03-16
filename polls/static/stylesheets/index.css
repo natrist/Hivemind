@@ -1,6 +1,8 @@
 body {
     background-image: url("../images/b48.png");
     background-repeat: y;
+    margin: 0;
+    padding: 0;
 }
 
 /* For background blending */
@@ -19,9 +21,11 @@ body:after {
 }
 
 .NavWrapper {
-    /* overflow: hidden; */
-    /* width: 100%; */
-    /* border: 1px solid black; */
+    /* Display hack: 
+    *   Forces the element to match the height of its other pages' siblings
+    */
+     margin-top: 21px;
+
     display: block;
     width: 250px;
     float:right;
