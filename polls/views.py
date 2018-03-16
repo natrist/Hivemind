@@ -45,3 +45,7 @@ def login (request):
     username = request.POST['username']
     password = request.POST['password']
     authenticate(request, username=username, password=password)
+
+def logout(request):
+    logout(request)
+    return HttpResponseRedirect(request.GET.get('next', '/'))
