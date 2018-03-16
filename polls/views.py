@@ -1,3 +1,5 @@
+# basics
+import json
 # For filtering
 from django.db.models import Q
 # For the oopsies
@@ -20,12 +22,24 @@ def detail(request, article_id):
         article = Article.objects.get(pk=article_id)
         userprofile = UserProfile.objects.get(pk=article.author.id)
         comment = Comment.objects.get(pk=article_id)
-        newComment = Comment()
     except ObjectDoesNotExist(article):
         raise Http404("Article does not exist")
     except ObjectDoesNotExist(comment):
         comment = None
-    return render(request, 'polls/detail.html', {'article': article, 'userprofile':userprofile, 'comment': comment, 'newComment': newComment})
+    if (request.method=="POST"):
+        result = ""
+        postContent = json.loads(request.POST["postContent"])
+        for op in postContent["ops"]:
+            # TODO:
+            # Add attributes cases
+            if "insert" in op:
+                if "image" in op['insert']:
+                    result += "<img src=\"{}\">".format(op['insert']['image'])
+                else:
+                    result += op['insert']
+        newPost = Comment(article=article, comment=result, author=request.user)
+        newPost.save()
+    return render(request, 'polls/detail.html', {'article': article, 'userprofile':userprofile, 'comment': comment})
 
 def search(request):
     # GET request handling
