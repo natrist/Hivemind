@@ -31,90 +31,106 @@
         <div class="Article-header">
             <h1>{{ article.name }}</h1>
         </div>
-        <div class="Post-content">
-            <div class="Author">
-                <div class="avatar-box">
-                        <img class="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
-                </div>
-                <div class="Author-detail">
-                    {{ article.author }} 
-                    <h6>Posted on {{ article.date_created }}
-                    {% if article.is_modified %}
-                        <br>Modified on {{ article.date_modified }}</h6>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="article-description">
-                <p>{{ article.description|safe }}</p>
-            </div>
-        </div>
-        <!-- Comment results listing: -->
-        {% for comment in article.comment_set.all %} 
-            <div class="Post-content" id="post-{{ comment.id }}">
+        <!-- HACKS DETECTED!!1 -->
+        <!-- The post wrapper is used to apply :last-of-type on Post-content class -->
+        <div class=Post-wrapper>
+            <div class="Post-content">
                 <div class="Author">
                     <div class="avatar-box">
                             <img class="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
                     </div>
                     <div class="Author-detail">
-                        {{ comment.author }} 
-                        <h6>Posted on {{ comment.date_created }}
+                        {{ article.author }} 
+                        <h6>Posted on {{ article.date_created }}
                         {% if article.is_modified %}
-                            <br>Modified on {{ comment.date_modified }}</h6>
+                            <br>Modified on {{ article.date_modified }}</h6>
                         {% endif %}
                     </div>
                 </div>
                 <div class="article-description">
-                    <p>{{ comment.comment|safe }}</p>
+                    <p>{{ article.description|safe }}</p>
                 </div>
             </div>
-        {% endfor %}
+            <!-- Comment results listing: -->
+            {% for comment in article.comment_set.all %} 
+                <div class="Post-content" id="post-{{ comment.id }}">
+                    <div class="Author">
+                        <div class="avatar-box">
+                                <img class="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
+                        </div>
+                        <div class="Author-detail">
+                            {{ comment.author }} 
+                            <h6>Posted on {{ comment.date_created }}
+                            {% if article.is_modified %}
+                                <br>Modified on {{ comment.date_modified }}</h6>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="article-description">
+                        <p>{{ comment.comment|safe }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <!-- More display hacks -->
+        <div class="Post-editor-wrapper">
+            <div class="Post-editor">
+                <div class="Author">
+                    <div class="avatar-box">
+                            <img class="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
+                    </div>
+                    <div class="Author-detail">
+                        {{ article.author }} 
+                    </div>
+                </div>
+                <div class="article-description">
+                    <!-- Create the toolbar container -->
+                    <div id="toolbar">
+                        <button class="ql-bold">Bold</button>
+                        <button class="ql-italic">Italic</button>
+                        <button class="ql-link">URl</button>
+                        <button class="ql-image">Image</button>
+                    </div>
+                    
+                    <!-- Create the editor container -->
+                    <div id="editor">
+                    </div>
+    
+                    <form>
+                        <input name="postContent" type="hidden" value="">
+                        <input class ="Post-submit-button" type="submit" value="Submit post">
+                    </form>
+    
+                    <!-- Initialize Quill editor -->
+                    <script>
+                        var editor = new Quill
+                        (
+                            '#editor',
+                            {
+                                modules:{ toolbar: '#toolbar'},
+                                theme: 'snow'
+                            }
+                        );
+                        
+                        var form = document.querySelector('form');
+                        form.onsubmit = function()
+                        {
+                            // Populate hidden form on submit
+                            var about = document.querySelector('input[name=postContent]');
+                            about.value = JSON.stringify(editor.getContents());
+    
+                            // Do something with the data
+                            // ...
+                            // article, comment, author
+                            // newComment
+                            return true;
+                        };
+                    </script>
+                </div>
+            </div>
+        </div>
 
         <div class="virtual-footer">
-
-            <!-- Create the toolbar container -->
-            <div id="toolbar">
-                <button class="ql-bold">Bold</button>
-                <button class="ql-italic">Italic</button>
-                <button class="ql-link">URl</button>
-                <button class="ql-image">Image</button>
-            </div>
-            
-            <!-- Create the editor container -->
-            <div id="editor">
-                <p>Hello World!</p>
-            </div>
-
-            <form>
-                <input name="postContent" type="hidden" value="">
-                <input class ="Post-submit-button" type="submit" value="Submit post">
-            </form>
-
-            <!-- Initialize Quill editor -->
-            <script>
-                var editor = new Quill
-                (
-                    '#editor',
-                    {
-                        modules:{ toolbar: '#toolbar'},
-                        theme: 'snow'
-                    }
-                );
-                
-                var form = document.querySelector('form');
-                form.onsubmit = function()
-                {
-                    // Populate hidden form on submit
-                    var about = document.querySelector('input[name=postContent]');
-                    about.value = JSON.stringify(editor.getContents());
-
-                    // Do something with the data
-                    // ...
-                    // article, comment, author
-                    // newComment
-                    return true;
-                };
-            </script>
-
             <a class="virtual-footer-button" href="http://localhost:8000/">< GO BACK HOME</a>
         </div>
     </body>

@@ -90,10 +90,10 @@ body:after {
     margin-right: 15%;
     overflow: hidden;
     border-top: solid 1px gray;
+    padding-top: 20px;
 }
 
 .Post-content:last-of-type {
-    border-top: solid 1px gray;
     border-bottom: solid 1px gray;
 }
 
@@ -108,7 +108,6 @@ body:after {
     float: left;
     /*margin-right: 40px;*/
     padding-right: 50px;
-    padding-top: 15px;
     padding-bottom: 15px;
 }
 
@@ -162,14 +161,56 @@ body:after {
     border: solid 1px black;
 }
 
-/* Almost footer, but not quite */
-.virtual-footer {
+.Post-editor-wrapper {
+    width: 100%;
+    background-color: rgba(158, 158, 158, 0.226);
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+    /*
+    padding-left: 15%;
+    padding-right: 15%;
+    */
+}
+
+.Post-editor {
+    /* Positioning */
     margin-right: 15%;
     margin-left: 15%;
-    padding-top: 60px;
+    padding-top: 20px;
+}
+
+#toolbar {
+    width: 100%;
+
+    /* Styling */
+    border: solid 1px gray;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    background-color: rgba(163, 162, 162, 0.164);
+
+}
+
+#editor {
+    height: 200px;
+    width: 100%;
+
+    /* Styling */
+    border: solid 1px gray;
+    border-top: none;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.281);
+
+}
+
+/* Almost footer, but not quite */
+.virtual-footer {
+    padding-top: 70px;
     text-align: center;
     height: 100px;
-    /*width: 100%;*/
+    width: 100%;
 }
 
 .virtual-footer-button {
@@ -194,4 +235,22 @@ body:after {
 }
 
 .Post-submit-button {
+    background-color: rgb(8, 71, 122);
+    border: solid 1px rgb(65, 157, 218);
+    color: #dbdee2;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+
+    /* Font settings */
+    font-family: 'Fira Mono', monospace;
+}
+
+.Post-submit-button:hover {
+    background-color: rgb(65, 157, 218);
+    border: solid 1px rgb(8, 71, 122);
 }
