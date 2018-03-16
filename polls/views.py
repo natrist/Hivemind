@@ -1,21 +1,23 @@
-# basics
+# For Quill JSON scripts
 import json
+
 # For filtering
 from django.db.models import Q
+
 # For the oopsies
-from django.http import Http404, HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse
+from django.http import Http404, HttpResponseRedirect
+
+from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate
 from django.core.exceptions import ObjectDoesNotExist
-
-from .models import Article, Category, Comment, UserProfile
+from .models import Article, Comment, UserProfile
 
 
 def index(request):
     hot_articles = Article.objects.order_by('-date_created')[:5]
     context = {'hot_articles': hot_articles}
     return render(request, 'polls/index.html', context)
+
 
 def detail(request, article_id):
     try:
@@ -26,7 +28,7 @@ def detail(request, article_id):
         raise Http404("Article does not exist")
     except ObjectDoesNotExist(comment):
         comment = None
-    if (request.method=="POST"):
+    if (request.method == "POST"):
         result = ""
         postContent = json.loads(request.POST["postContent"])
         for op in postContent["ops"]:
@@ -39,7 +41,16 @@ def detail(request, article_id):
                     result += op['insert']
         newPost = Comment(article=article, comment=result, author=request.user)
         newPost.save()
-    return render(request, 'polls/detail.html', {'article': article, 'userprofile':userprofile, 'comment': comment})
+    return render(
+        request,
+        'polls/detail.html',
+        {
+            'article': article,
+            'userprofile': userprofile,
+            'comment': comment
+        }
+    )
+
 
 def search(request):
     # GET request handling
@@ -48,17 +59,25 @@ def search(request):
         if search is None or search == "":
             return redirect("index")
     # CONTINUE
-    article_results = Article.objects.filter(Q(name__icontains=search)|Q(description__icontains=search))
+    article_results = Article.objects.filter(
+        Q(name__icontains=search) | Q(description__icontains=search)
+    )
     comment_results = Comment.objects.filter(comment__icontains=search)
-    #total_results = article_results + comment_results
     total_results = article_results.count() + comment_results.count()
-    context = {'article_results': article_results, 'comment_results': comment_results, 'search': search, 'total_results': total_results}
+    context = {
+        'article_results': article_results,
+        'comment_results': comment_results,
+        'search': search,
+        'total_results': total_results
+    }
     return render(request, 'polls/search.html', context)
 
-def login (request):
+
+def login(request):
     username = request.POST['username']
     password = request.POST['password']
     authenticate(request, username=username, password=password)
+
 
 def logout(request):
     logout(request)
