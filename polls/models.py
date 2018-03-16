@@ -32,7 +32,7 @@ class UserProfile(models.Model):
     avatar = models.ImageField()
 
     def __str__(self):
-        return self.user.name
+        return self.user.username
 
 
 @receiver(post_save, sender=User)
