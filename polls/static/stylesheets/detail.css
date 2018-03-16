@@ -157,6 +157,10 @@ body:after {
     padding-bottom: 15px;
 }
 
+.article-description p {
+    font-size: 16px;
+}
+
 .comments-box {
     border: solid 1px black;
 }
@@ -205,6 +209,39 @@ body:after {
 
 }
 
+#editor p {
+    font-size: 16px;
+}
+
+.Post-submit-button {
+    background-color: rgb(8, 71, 122);
+    border: solid 1px rgb(65, 157, 218);
+    color: #dbdee2;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+
+    /* Font settings */
+    font-family: 'Fira Mono', monospace;
+}
+
+.Post-submit-button:hover {
+    background-color: rgb(65, 157, 218);
+    border: solid 1px rgb(8, 71, 122);
+}
+
+::selection {
+    background: rgba(8, 71, 122, 0.3);; /* WebKit/Blink Browsers */
+}
+
+::-moz-selection {
+    background: rgb(8, 71, 122, 0.3);; /* Gecko Browsers */
+}
+
 /* Almost footer, but not quite */
 .virtual-footer {
     padding-top: 70px;
@@ -230,27 +267,6 @@ body:after {
 }
 
 .virtual-footer-button:hover {
-    background-color: rgb(65, 157, 218);
-    border: solid 1px rgb(8, 71, 122);
-}
-
-.Post-submit-button {
-    background-color: rgb(8, 71, 122);
-    border: solid 1px rgb(65, 157, 218);
-    color: #dbdee2;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-
-    /* Font settings */
-    font-family: 'Fira Mono', monospace;
-}
-
-.Post-submit-button:hover {
     background-color: rgb(65, 157, 218);
     border: solid 1px rgb(8, 71, 122);
 }

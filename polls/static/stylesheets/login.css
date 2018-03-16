@@ -6,6 +6,14 @@ form {
     width: 300px;
 }
 
+::selection {
+    background: rgba(8, 71, 122, 0.3);; /* WebKit/Blink Browsers */
+}
+
+::-moz-selection {
+    background: rgb(8, 71, 122, 0.3);; /* Gecko Browsers */
+}
+
 .Login-button, #id_username, #id_password {
     width: 255px;
     height: 45px;

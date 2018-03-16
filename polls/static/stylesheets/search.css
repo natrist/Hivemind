@@ -9,6 +9,14 @@
  *  and I'm too lazy to scroll
  */
 
+ ::selection {
+    background: rgba(8, 71, 122, 0.3);; /* WebKit/Blink Browsers */
+}
+
+::-moz-selection {
+    background: rgb(8, 71, 122, 0.3);; /* Gecko Browsers */
+}
+
  .NavWrapper {
     /* overflow: hidden; */
     /* width: 100%; */

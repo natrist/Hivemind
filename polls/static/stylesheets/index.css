@@ -20,6 +20,14 @@ body:after {
     background: #dceeff;
 }
 
+::selection {
+    background: rgba(8, 71, 122, 0.3);; /* WebKit/Blink Browsers */
+}
+
+::-moz-selection {
+    background: rgb(8, 71, 122, 0.3);; /* Gecko Browsers */
+}
+
 .NavWrapper {
     /* Display hack: 
     *   Forces the element to match the height of its other pages' siblings
