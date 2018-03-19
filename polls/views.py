@@ -28,6 +28,8 @@ def detail(request, article_id):
         raise Http404("Article does not exist")
     except ObjectDoesNotExist(comment):
         comment = None
+    except Exception as e:
+        print(e)
     if (request.method == "POST"):
         result = ""
         postContent = json.loads(request.POST["postContent"])

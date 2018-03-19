@@ -29,7 +29,7 @@ class SuperDatedModel(models.Model):
 class UserProfile(models.Model):
     objects = models.Manager()
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField()
+    avatar = models.ImageField(upload_to="polls/images/")
 
     def __str__(self):
         return self.user.username

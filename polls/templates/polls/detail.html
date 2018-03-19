@@ -38,7 +38,7 @@
             <div class="Post-content">
                 <div class="Author">
                     <div class="avatar-box">
-                            <img class="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
+                            <img class="profile-picture" src="{{ article.author.userprofile.avatar.url }}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
                     </div>
                     <div class="Author-detail">
                         {{ article.author }} 
@@ -57,7 +57,7 @@
                 <div class="Post-content" id="post-{{ comment.id }}">
                     <div class="Author">
                         <div class="avatar-box">
-                                <img class="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
+                                <img class="profile-picture" src="{{ comment.author.userprofile.avatar.url }}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
                         </div>
                         <div class="Author-detail">
                             {{ comment.author }} 
@@ -78,7 +78,7 @@
             <div class="Post-editor">
                 <div class="Author">
                     <div class="avatar-box">
-                            <img class="profile-picture" src="{% static 'images/fire.png' %}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
+                        <img class="profile-picture" src="{{ userprofile.avatar.url }}" alt="Fire!" title="HARDCODED PIECE OF SHIT: FIX ME!!"/>
                     </div>
                     <div class="Author-detail">
                         {{ article.author }} 
