@@ -68,6 +68,8 @@
     appearance: none;
     text-decoration: none;
     color: inherit;
+    width: 100%;
+    display: block;
 }
 
 .NavWrapper:hover .Profile-Dropdown-content {
