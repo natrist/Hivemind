@@ -62,7 +62,8 @@ body:after {
     color: #dbdfe2;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    min-width: 200px;
+    min-width: 150px;
+    padding-left: 5px;
 }
 
 .Profile-Dropdown-content a {
@@ -125,8 +126,6 @@ body:after {
 .Author-detail {
     float: right;
     padding-left: 15px;
-    /*float: right;*/
-    /*loat: right;*/
 }
 
 .avatar-box-op {
@@ -153,13 +152,23 @@ body:after {
 
 .article-description {
     overflow: hidden;
-    width: 60%;
     position: relative;
-    padding-left: 5px;
     padding-bottom: 15px;
+    display: inline;
 }
 
 .article-description p {
+    font-size: 16px;
+}
+
+.Post-editor-tools {
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    width: 70%;
+}
+
+.Post-editor-tools p {
     font-size: 16px;
 }
 
@@ -184,7 +193,7 @@ body:after {
     /* Positioning */
     margin-right: 15%;
     margin-left: 15%;
-    padding-top: 20px;
+    padding-top: 2px;
 }
 
 #toolbar {
