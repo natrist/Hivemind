@@ -73,6 +73,11 @@
     display: block;
 }
 
+.Profile-Dropdown-content-icon {
+    height: 12px;
+    color: #419dda;
+}
+
 .NavWrapper:hover .Profile-Dropdown-content {
     display: block;
     background-color: #394b83;

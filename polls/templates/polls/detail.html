@@ -24,8 +24,21 @@
             <button class="Profile-Dropdown-button">Welcome, {{ user }}</button>
             <div class="Profile-Dropdown-content">
                 {% if request.user.is_authenticated %}
-                    <a href="/logout/?next={{request.path}}">Log out</a>
                     <a href="/profile">View profile</a>
+                    <!-- Icon credits: plus sign by Hea Poh Lin from the Noun Project -->
+                    <a href="#" class="icon">
+                        <span class="">
+                            <img class="Profile-Dropdown-content-icon" src="{% static 'images/plus_sign.svg' %}"></img>
+                        </span>
+                        New article
+                    </a>
+                    <a href="#" class="icon">
+                        <span class="">
+                            <img class="Profile-Dropdown-content-icon" src="{% static 'images/plus_sign.svg' %}"></img>
+                        </span>
+                        New note
+                    </a>
+                    <a href="/logout/?next={{request.path}}">Log out</a>
                 {% else %}
                     <a href="/login/?next={{request.path}}">Log in</a>
                 {% endif %}
