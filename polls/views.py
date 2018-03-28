@@ -84,3 +84,8 @@ def login(request):
 def logout(request):
     logout(request)
     return HttpResponseRedirect(request.GET.get('next', '/'))
+
+
+def profile(request):
+    context = {}
+    return render(request, 'polls/profile.html', context)

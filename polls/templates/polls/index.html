@@ -17,6 +17,7 @@
             <div class="Profile-Dropdown-content">
                 {% if request.user.is_authenticated %}
                     <a href="/logout/?next={{request.path}}">Log out</a>
+                    <a href="/profile">View profile</a>
                 {% else %}
                     <a href="/login/?next={{request.path}}">Log in</a>
                 {% endif %}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+    <head>
+        <title>Hivemind –– Profile</title>
+        <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/profile.css' %}">
+    </head>
+
+    <body>
+        <!-- AccountDropdown: -->
+        <!-- BLOCK START -->
+        <div class="NavWrapper">
+            <button class="Profile-Dropdown-button">Welcome, {{ user }}</button>
+            <div class="Profile-Dropdown-content">
+                {% if request.user.is_authenticated %}
+                    <a href="/logout/?next={{request.path}}">Log out</a>
+                    <a href="/profile">View profile</a>
+                {% else %}
+                    <a href="/login/?next={{request.path}}">Log in</a>
+                {% endif %}
+            </div>
+        </div>
+        <!-- BLOCK END -->
+
+        <!-- Profile-contentWrapper -->
+        <div class="Profile-contentWrapper">
+            <div class="Contact-wrapper">
+                <img class="Profile-picture" src="{{ user.userprofile.avatar.url }}" alt="Fire!"/>
+                <a href="">{{ user }}</a>
+            </div>
+        </div>
+    </body>
+</html>
