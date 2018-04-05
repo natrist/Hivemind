@@ -3,6 +3,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
+from django.conf import settings
 
 
 class SuperDatedModel(models.Model):
@@ -29,7 +30,7 @@ class SuperDatedModel(models.Model):
 class UserProfile(models.Model):
     objects = models.Manager()
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to="polls/images/")
+    avatar = models.ImageField(upload_to="polls/images/", default=".." + settings.STATIC_URL + "images/default_avatar.svg")
 
     def __str__(self):
         return self.user.username
